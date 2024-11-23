@@ -33,5 +33,27 @@ class NewsController extends Controller {
             "removed_news" => $news
         ]);
     }
+    function restrict($id, Request $request) {
+        $user = auth()->user();
+        $user_age = $user->age;
+
+        $news = News::find($id);
+
+        if (!$news) {
+            return response()->json([
+                'error' => 'News not found.',
+            ], 404);
+        }
+
+        if ($news->age_restriction && $user_age < $news->age_restriction) {
+            return response()->json([
+                'error' => 'You are not old enough to access this news.',
+            ], 403);
+        }
+
+        return response()->json([
+            'news' => $news
+        ]);
+    }
     
 }
