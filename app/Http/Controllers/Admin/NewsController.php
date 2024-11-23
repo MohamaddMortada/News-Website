@@ -24,9 +24,9 @@ class NewsController extends Controller {
             'content' => $request->content,
             'age_restriction'=>$request->age_restriction,
         ]);
-        return response()->json("updated_news" => $news);
+        return response()->json(["updated_news" => $news]);
     }
-    function remove($id) {
+    public function remove($id) {
         $news = News::find($id)->delete();
 
         return response()->json([
@@ -57,3 +57,4 @@ class NewsController extends Controller {
     }
     
 }
+?>

@@ -12,3 +12,4 @@ class testController extends Controller
         ]);
     }
 }
+?>
