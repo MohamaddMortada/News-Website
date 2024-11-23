@@ -13,6 +13,7 @@ class NewsController extends Controller {
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => auth()->id(),
+            'age_restriction'=>$request->age_restriction,
         ]);
 
         return response()->json($news);
@@ -21,6 +22,7 @@ class NewsController extends Controller {
         $news=News::find($id)->update([
             'title' => $request->title,
             'content' => $request->content,
+            'age_restriction'=>$request->age_restriction,
         ]);
         return response()->json("updated_news" => $news);
     }
@@ -31,4 +33,5 @@ class NewsController extends Controller {
             "removed_news" => $news
         ]);
     }
+    
 }
