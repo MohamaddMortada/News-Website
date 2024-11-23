@@ -4,5 +4,6 @@ use App\Http\Controllers\Admin\NewsController;
 
 Route::get("/test", [testController::class, "test_api"]);
 Route::post('news', [NewsController::class, 'create']);
+Route::put('news', [NewsController::class, 'edit']);
 
 ?>

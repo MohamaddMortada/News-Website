@@ -17,4 +17,11 @@ class NewsController extends Controller {
 
         return response()->json($news);
     }
+    public function edit(Request $request, $id) {
+        $news=News::find($id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+        return response()->json("updated_news" => $news);
+    }
 }
