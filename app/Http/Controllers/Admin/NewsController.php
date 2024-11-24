@@ -37,10 +37,19 @@ class NewsController extends Controller {
         return response()->json(["updated_news" => $news]);
     }
     public function remove($id) {
-        $news = News::find($id)->delete();
-
+        $news = News::find($id);
+    
+        if (!$news) {
+            return response()->json([
+                "News not found",
+            ]);
+        }
+    
+        $news->delete();
+    
         return response()->json([
-            "removed_news" => $news
+            "News item deleted successfully",
+            "removed_news" => $news,
         ]);
     }
     function restrict($id, Request $request) {
