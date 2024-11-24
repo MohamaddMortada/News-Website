@@ -9,20 +9,30 @@ use App\Models\News;
 class NewsController extends Controller {
 
     public function create(Request $request) {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'age_restriction' => 'required|integer',
+        ]);
         $news = News::create([
-            'title' => $request->title,
-            'content' => $request->content,
+            'title' => $validated['title'],
+            'content' => $validated['content'],
             'user_id' => auth()->id(),
-            'age_restriction'=>$request->age_restriction,
+            'age_restriction' => $validated['age_restriction'],
         ]);
 
         return response()->json($news);
     }
     public function edit(Request $request, $id) {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'age_restriction' => 'required|integer',
+        ]);
         $news=News::find($id)->update([
-            'title' => $request->title,
-            'content' => $request->content,
-            'age_restriction'=>$request->age_restriction,
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'age_restriction' => $validated['age_restriction'],
         ]);
         return response()->json(["updated_news" => $news]);
     }

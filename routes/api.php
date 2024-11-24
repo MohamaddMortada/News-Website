@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\testController;
+use App\Http\Controllers\ArticleController;
+
 
 Route::get("/test", [testController::class, "test_api"]);
 Route::prefix("/news")->group(function() {

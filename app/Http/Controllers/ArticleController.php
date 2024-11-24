@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 
@@ -9,7 +9,7 @@ class ArticleController extends Controller {
 
     public function create(Request $request, News $news) {
 
-        if (!$news) {
+       if (!$news) {
             return response()->json(['error' => 'news not found.'], 404);
         }
         $article = Article::create([
