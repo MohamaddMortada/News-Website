@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\News;
 
 class NewsController extends Controller {
+    public function __construct() {
+        $this->middleware('auth:api'); 
+    }
 
     public function create(Request $request) {
         $validated = $request->validate([
@@ -52,7 +55,7 @@ class NewsController extends Controller {
             "removed_news" => $news,
         ]);
     }
-    
+
     public function restrict($id, Request $request) {
         $user = auth()->user();
     

@@ -11,7 +11,7 @@ Route::middleware('auth:api')->get('user', [AuthController::class, 'user']);
 Route::middleware('auth:api')->post('logout', [AuthController::class, 'logout']);
 
 Route::get("/test", [testController::class, "test_api"]);
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:api')->group(function () {
     Route::post('/news', [NewsController::class, 'create']);
     Route::put('/news/{id}', [NewsController::class, 'edit']);
     Route::delete('/news/{id}', [NewsController::class, 'remove']);

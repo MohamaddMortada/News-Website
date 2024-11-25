@@ -7,6 +7,9 @@ use App\Models\Article;
 
 class ArticleController extends Controller {
 
+    public function __construct() {
+        $this->middleware('auth:api'); 
+    }
     public function create(Request $request, News $news) {
 
        if (!$news) {
