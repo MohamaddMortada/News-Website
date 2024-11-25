@@ -51,4 +51,16 @@ class AuthController extends Controller {
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
+    public function user(Request $request)
+    {
+        return response()->json(auth()->user());
+    }
+
+    
+    public function logout(Request $request)
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+        return response()->json(['message' => 'Logged out successfully']);
+    }
+
 }
